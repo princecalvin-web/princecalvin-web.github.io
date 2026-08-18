@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Story Point Automation — Case Study | Prince Calvin</title>
+  <meta name="description" content="Case study: AI Story Point Automation — LLM + RAG workflow for intelligent story estimation in JIRA." />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    .ai-workflow { background: #0A0A0A; border-radius: var(--radius-lg); padding: 48px; }
+    .ai-wf-chain { display: flex; flex-direction: column; gap: 0; max-width: 540px; }
+    .ai-wf-input-row { display: flex; gap: 16px; align-items: stretch; margin-bottom: 0; }
+    .ai-wf-input-box {
+      flex: 1; padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem; font-weight: 600; color: #fff;
+    }
+    .ai-wf-plus { display:flex;align-items:center;padding:0 8px;color:rgba(255,255,255,0.3);font-size:1.2rem; }
+    .ai-wf-node {
+      padding: 14px 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .ai-wf-node-text { font-size: 0.88rem; font-weight: 600; color: #fff; }
+    .ai-wf-node-sub { font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top: 2px; }
+    .ai-wf-node.highlight { border-color: rgba(199,255,61,0.25); background: rgba(199,255,61,0.04); }
+    .ai-wf-node.highlight .ai-wf-node-text { color: var(--accent); }
+    .ai-wf-node.output-node { border-color: rgba(199,255,61,0.4); background: rgba(199,255,61,0.06); }
+    .ai-wf-node.output-node .ai-wf-node-text { color: var(--accent); font-size: 1rem; }
+    .ai-wf-arrow { padding: 8px 20px; color: var(--accent); font-size: 1.1rem; }
+    .complexity-row { display: flex; gap: 12px; align-items: center; }
+    .complexity-box {
+      flex: 1; padding: 12px; text-align: center;
+      border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm);
+      font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.7);
+    }
+    .complexity-op { color: rgba(255,255,255,0.3); font-size: 1rem; }
+    .fib-node {
+      padding: 16px 20px; text-align: center;
+      border: 2px solid var(--accent); border-radius: var(--radius-sm);
+      background: rgba(199,255,61,0.06);
+    }
+    .fib-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    .fib-value { font-size: 1.2rem; font-weight: 700; color: #fff; margin-top: 4px; }
+    .downstream-arrow { text-align: center; padding: 20px 0; color: rgba(255,255,255,0.3); }
+    @media (max-width:480px) {
+      .complexity-row { flex-direction: column; }
+      .ai-wf-input-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body data-page="work">
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Prince Calvin</a>
+    <div class="nav-links">
+      <a href="../index.html#about" data-page="about">About</a>
+      <a href="../index.html#experience" data-page="experience">Experience</a>
+      <a href="../index.html#work" data-page="work">Work</a>
+      <a href="../index.html#ai" data-page="ai">AI</a>
+      <a href="../index.html#capabilities" data-page="capabilities">Capabilities</a>
+      <a href="../index.html#contact" data-page="contact">Contact</a>
+    </div>
+    <a href="../assets/prince-calvin-resume.pdf" class="nav-resume" target="_blank" rel="noopener">RESUME ↗</a>
+    <button class="nav-hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../index.html#about">About</a>
+  <a href="../index.html#experience">Experience</a>
+  <a href="../index.html#work">Work</a>
+  <a href="../index.html#ai">AI</a>
+  <a href="../index.html#capabilities">Capabilities</a>
+  <a href="../index.html#contact">Contact</a>
+  <a href="../assets/prince-calvin-resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+</div>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="container">
+    <a href="../index.html#work" class="cs-back">← Back to Work</a>
+    <div class="cs-cat">AI · LLM · RAG · Knowledge Base · JIRA</div>
+    <h1 class="cs-title">AI Story Point Automation</h1>
+    <p class="cs-subtitle">An intelligent estimation workflow using LLM, RAG and a domain Knowledge Base to support story-point decisions in JIRA.</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">My Role</div>
+        <div class="cs-meta-value">Business &amp; Quality Analyst / BEA</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Type</div>
+        <div class="cs-meta-value">AI Automation · Business Efficient Automation</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Integration</div>
+        <div class="cs-meta-value">JIRA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-body">
+  <div class="container" style="max-width:900px;">
+
+    <!-- 01 -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">01 / BUSINESS CONTEXT</div>
+      <h2 class="cs-section-title">Story estimation — slow, inconsistent, manual.</h2>
+      <div class="cs-section-body">
+        <p>Story-point estimation is a fundamental part of Agile delivery. Without accurate estimates, sprint planning suffers, delivery predictability drops and capacity planning becomes unreliable.</p>
+        <p>This Business Efficient Automation use case was designed to support story-point estimation using a predefined domain Knowledge Base, LLM and Retrieval-Augmented Generation — bringing consistency and context-awareness to the estimation process.</p>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">02 / BUSINESS PROBLEM</div>
+      <h2 class="cs-section-title">Estimation relied on individual judgement.</h2>
+      <div class="cs-section-body">
+        <p>Traditional story estimation was heavily dependent on the assignee's familiarity with the domain and past experience. This created inconsistency across teams and sprints, and made capacity planning harder to standardise.</p>
+        <p>The challenge was to create an AI-assisted workflow that could use historical domain knowledge to support more consistent, rubric-based estimates — while still feeding the result directly into JIRA.</p>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">03 / MY ROLE</div>
+      <h2 class="cs-section-title">Business Analyst — workflow, rules and validation.</h2>
+      <div class="cs-section-body">
+        <p>My contribution was centred around business analysis, requirement definition, business rule design and validation. I did not personally engineer the LLM or RAG architecture — that was handled by the engineering team. My role was to define what the workflow should do, how it should behave, and to validate that the delivered solution met the defined business requirements.</p>
+      </div>
+    </div>
+
+    <!-- 04 Workflow -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">04 / PROCESS / WORKFLOW</div>
+      <h2 class="cs-section-title">From user story to JIRA story point.</h2>
+      <div class="ai-workflow">
+        <div class="ai-wf-chain">
+          <!-- Input -->
+          <div class="ai-wf-input-row">
+            <div class="ai-wf-input-box">
+              <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px;">Input 1</div>
+              User Story Description
+            </div>
+            <div class="ai-wf-plus">+</div>
+            <div class="ai-wf-input-box">
+              <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px;">Input 2</div>
+              Assignee Specialization
+            </div>
+          </div>
+          <div class="ai-wf-arrow">↓</div>
+
+          <!-- LLM 1 -->
+          <div class="ai-wf-node highlight">
+            <div>
+              <div class="ai-wf-node-text">LLM</div>
+              <div class="ai-wf-node-sub">Large Language Model processes the story context</div>
+            </div>
+          </div>
+          <div class="ai-wf-arrow">↓</div>
+
+          <!-- Knowledge Base -->
+          <div class="ai-wf-node">
+            <div>
+              <div class="ai-wf-node-text">Domain Knowledge Base</div>
+              <div class="ai-wf-node-sub">Pre-defined domain knowledge — historical stories &amp; patterns</div>
+            </div>
+          </div>
+          <div class="ai-wf-arrow">↓</div>
+
+          <!-- RAG -->
+          <div class="ai-wf-node highlight">
+            <div>
+              <div class="ai-wf-node-text">RAG</div>
+              <div class="ai-wf-node-sub">Retrieval-Augmented Generation — retrieves relevant matches</div>
+            </div>
+          </div>
+          <div class="ai-wf-arrow">↓</div>
+
+          <!-- Top 10 -->
+          <div class="ai-wf-node">
+            <div>
+              <div class="ai-wf-node-text">Top 10 Matches</div>
+              <div class="ai-wf-node-sub">Most relevant historical stories retrieved from Knowledge Base</div>
+            </div>
+          </div>
+          <div class="ai-wf-arrow">↓</div>
+
+          <!-- LLM 2 + Rubric -->
+          <div class="ai-wf-node highlight">
+            <div>
+              <div class="ai-wf-node-text">Second LLM + Estimation Rubric</div>
+              <div class="ai-wf-node-sub">Applies defined rubric to the retrieved matches</div>
+            </div>
+          </div>
+          <div class="ai-wf-arrow">↓</div>
+
+          <!-- Complexity row -->
+          <div class="complexity-row">
+            <div class="complexity-box">Complexity</div>
+            <div class="complexity-op">+</div>
+            <div class="complexity-box">Risk</div>
+            <div class="complexity-op">+</div>
+            <div class="complexity-box">Timeframe</div>
+          </div>
+          <div class="ai-wf-arrow">↓</div>
+
+          <!-- Fibonacci -->
+          <div class="fib-node">
+            <div class="fib-label">Output</div>
+            <div class="fib-value">Fibonacci Story Point</div>
+          </div>
+          <div class="ai-wf-arrow">↓</div>
+
+          <!-- JIRA -->
+          <div class="ai-wf-node">
+            <div>
+              <div class="ai-wf-node-text">JIRA</div>
+              <div class="ai-wf-node-sub">Estimation written back to JIRA</div>
+            </div>
+          </div>
+          <div class="ai-wf-arrow">↓</div>
+
+          <!-- Output fields -->
+          <div class="ai-wf-input-row">
+            <div class="ai-wf-input-box" style="border-color:rgba(199,255,61,0.2);">
+              AI Story Point Field
+            </div>
+            <div class="ai-wf-plus">+</div>
+            <div class="ai-wf-input-box" style="border-color:rgba(199,255,61,0.2);">
+              Story Point Field
+            </div>
+          </div>
+        </div>
+
+        <!-- Downstream -->
+        <div class="downstream-arrow" style="text-align:left;padding:24px 0 8px 0;">
+          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:12px;">DOWNSTREAM INTEGRATION</div>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <div class="ai-wf-input-box" style="max-width:200px;">AI Story Point Data</div>
+            <span style="color:var(--accent);">→</span>
+            <div class="ai-wf-input-box" style="max-width:280px;">Engineering Performance Dashboard</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 What I Did -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">05 / WHAT I DID</div>
+      <h2 class="cs-section-title">My contribution.</h2>
+      <div class="cs-contrib">
+        <div class="cs-contrib-item">Business Analysis</div>
+        <div class="cs-contrib-item">Requirement Definition</div>
+        <div class="cs-contrib-item">Business Rules</div>
+        <div class="cs-contrib-item">Workflow Understanding</div>
+        <div class="cs-contrib-item">Validation</div>
+        <div class="cs-contrib-item">Testing</div>
+        <div class="cs-contrib-item">Delivery Support</div>
+      </div>
+    </div>
+
+    <!-- 06 Tools -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">06 / TOOLS &amp; TECHNOLOGIES</div>
+      <h2 class="cs-section-title">Working toolkit.</h2>
+      <div class="cs-contrib">
+        <div class="cs-contrib-item">JIRA</div>
+        <div class="cs-contrib-item">LLM</div>
+        <div class="cs-contrib-item">RAG</div>
+        <div class="cs-contrib-item">Knowledge Base</div>
+        <div class="cs-contrib-item">Confluence</div>
+      </div>
+    </div>
+
+    <!-- 07 Outcome -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">07 / OUTCOME</div>
+      <h2 class="cs-section-title">AI-assisted estimation, embedded in JIRA.</h2>
+      <div class="wf-outcome" style="max-width:640px;">
+        <div class="wf-outcome-label">Outcome</div>
+        <div class="wf-outcome-text">The workflow provides AI-supported story-point estimation directly within JIRA, using domain knowledge and a structured rubric to produce Fibonacci-based estimates — improving estimation consistency and reducing manual effort.</div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:40px;border-top:1px solid var(--border-dark);">
+      <a href="engineering-dashboard.html" style="color:rgba(255,255,255,0.5);font-size:0.82rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">← Previous: Engineering Dashboard</a>
+      <a href="jira-hygiene.html" style="color:#fff;font-size:0.82rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Next: JIRA Hygiene →</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">Prince Calvin<span>Business &amp; Quality Analyst · AI Tester</span></div>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/prince-calvin-p-0a6900255" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:princecalvin86984@gmail.com">Email</a>
+        <a href="../assets/prince-calvin-resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+      <div class="footer-copy">© 2026 Prince Calvin</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+</body>
+</html>

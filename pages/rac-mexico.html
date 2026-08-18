@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAC Mexico — Case Study | Prince Calvin</title>
+  <meta name="description" content="Case study: RAC Mexico regional expansion — Business Analysis, UAT and production validation by Prince Calvin." />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    .cs-process-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 40px;
+    }
+    .cs-flow-col {
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      position: relative;
+    }
+    .cs-flow-col:not(:last-child)::after {
+      content: '→'; position: absolute; right: -10px; top: 32px;
+      font-size: 1rem; color: var(--accent);
+    }
+    .cs-flow-node {
+      padding: 14px 16px; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); background: var(--bg-card);
+      font-size: 0.82rem; font-weight: 600; color: var(--text-primary);
+      width: 90%; margin-bottom: 8px;
+    }
+    .cs-flow-node.accent-node {
+      border-color: var(--accent); background: var(--accent-dim);
+    }
+    @media (max-width: 768px) {
+      .cs-process-flow { grid-template-columns: 1fr; }
+      .cs-flow-col:not(:last-child)::after { content: '↓'; right: auto; top: auto; bottom: -12px; left: 50%; transform: translateX(-50%); }
+      .cs-flow-col { padding-bottom: 24px; }
+    }
+  </style>
+</head>
+<body data-page="work">
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Prince Calvin</a>
+    <div class="nav-links">
+      <a href="../index.html#about" data-page="about">About</a>
+      <a href="../index.html#experience" data-page="experience">Experience</a>
+      <a href="../index.html#work" data-page="work">Work</a>
+      <a href="../index.html#ai" data-page="ai">AI</a>
+      <a href="../index.html#capabilities" data-page="capabilities">Capabilities</a>
+      <a href="../index.html#contact" data-page="contact">Contact</a>
+    </div>
+    <a href="../assets/prince-calvin-resume.pdf" class="nav-resume" target="_blank" rel="noopener">RESUME ↗</a>
+    <button class="nav-hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../index.html#about">About</a>
+  <a href="../index.html#experience">Experience</a>
+  <a href="../index.html#work">Work</a>
+  <a href="../index.html#ai">AI</a>
+  <a href="../index.html#capabilities">Capabilities</a>
+  <a href="../index.html#contact">Contact</a>
+  <a href="../assets/prince-calvin-resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
+</div>
+
+<!-- CASE STUDY HERO -->
+<section class="cs-hero">
+  <div class="container">
+    <a href="../index.html#work" class="cs-back">← Back to Work</a>
+    <div class="cs-cat">Retail · Business Analysis · Quality · Client Delivery</div>
+    <h1 class="cs-title">RAC Mexico</h1>
+    <p class="cs-subtitle">From an existing US production platform to a Mexico regional implementation.</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">My Role</div>
+        <div class="cs-meta-value">Business &amp; Quality Analyst / BEA</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Domain</div>
+        <div class="cs-meta-value">Retail · Regional Expansion</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Delivery</div>
+        <div class="cs-meta-value">Requirements → UAT → Production</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY BODY -->
+<div class="cs-body">
+  <div class="container" style="max-width:900px;">
+
+    <!-- 01 Business Context -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">01 / BUSINESS CONTEXT</div>
+      <h2 class="cs-section-title">A US production platform, expanding to Mexico.</h2>
+      <div class="cs-section-body">
+        <p>The application was already in production in the United States as part of the Rent-A-Center ecosystem. A requirement emerged to build a Mexico regional implementation with appropriate business workflows and customer journeys adapted for the Mexican region.</p>
+        <p>This was not a greenfield build — it was a regional adaptation of a live production platform, requiring careful gap analysis, workflow mapping and close client collaboration.</p>
+      </div>
+    </div>
+
+    <!-- 02 Business Problem -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">02 / BUSINESS PROBLEM</div>
+      <h2 class="cs-section-title">The US platform couldn't serve Mexico as-is.</h2>
+      <div class="cs-section-body">
+        <p>The existing US platform carried US-specific business workflows, customer journeys and operational processes. Deploying it directly into the Mexican market without adaptation would have resulted in misaligned customer experiences and non-functional business workflows.</p>
+        <p>The core challenge was identifying which elements needed to be adapted, documenting those gaps clearly, and translating them into development-ready requirements — while maintaining close alignment with international stakeholders.</p>
+      </div>
+    </div>
+
+    <!-- 03 My Role -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">03 / MY ROLE</div>
+      <h2 class="cs-section-title">Client-facing Business &amp; Quality Analyst.</h2>
+      <div class="cs-section-body">
+        <p>I served as the primary Business Analyst on this engagement — working directly with international Product Owners and business stakeholders to gather, define and validate requirements. My responsibility extended from initial requirement elicitation through to UAT and production validation.</p>
+      </div>
+    </div>
+
+    <!-- 04 What I Did -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">04 / WHAT I DID</div>
+      <h2 class="cs-section-title">My contribution.</h2>
+      <div class="cs-contrib">
+        <div class="cs-contrib-item">Client-facing Requirement Gathering</div>
+        <div class="cs-contrib-item">Stakeholder Interviews</div>
+        <div class="cs-contrib-item">Requirement Meetings</div>
+        <div class="cs-contrib-item">Business Problem Analysis</div>
+        <div class="cs-contrib-item">Gap Analysis</div>
+        <div class="cs-contrib-item">Wireframes</div>
+        <div class="cs-contrib-item">Client Walkthroughs</div>
+        <div class="cs-contrib-item">Client Sign-off</div>
+        <div class="cs-contrib-item">FRD</div>
+        <div class="cs-contrib-item">User Stories</div>
+        <div class="cs-contrib-item">Acceptance Criteria</div>
+        <div class="cs-contrib-item">Confluence Documentation</div>
+        <div class="cs-contrib-item">JIRA Tracking</div>
+        <div class="cs-contrib-item">Sprint Planning</div>
+        <div class="cs-contrib-item">SIT</div>
+        <div class="cs-contrib-item">UAT</div>
+        <div class="cs-contrib-item">Production Validation</div>
+      </div>
+    </div>
+
+    <!-- 05 Process -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">05 / PROCESS / WORKFLOW</div>
+      <h2 class="cs-section-title">From US platform to Mexico production.</h2>
+      <div class="cs-workflow">
+        <div class="workflow-chain">
+          <div class="wf-node">
+            <div><div class="wf-node-label">US Production Platform</div><div class="wf-node-sub">Existing live application — starting point</div></div>
+          </div>
+          <div class="wf-arrow">↓</div>
+          <div class="wf-node">
+            <div><div class="wf-node-label">Mexico Requirements Gathering</div><div class="wf-node-sub">Stakeholder interviews · Requirement meetings</div></div>
+          </div>
+          <div class="wf-arrow">↓</div>
+          <div class="wf-node">
+            <div><div class="wf-node-label">Gap Analysis</div><div class="wf-node-sub">US workflows vs Mexico business requirements</div></div>
+          </div>
+          <div class="wf-arrow">↓</div>
+          <div class="wf-node">
+            <div><div class="wf-node-label">Wireframes</div><div class="wf-node-sub">Visual representation of adapted workflows</div></div>
+          </div>
+          <div class="wf-arrow">↓</div>
+          <div class="wf-node">
+            <div><div class="wf-node-label">Client Walkthrough &amp; Sign-off</div><div class="wf-node-sub">International stakeholder review and approval</div></div>
+          </div>
+          <div class="wf-arrow">↓</div>
+          <div class="wf-node">
+            <div><div class="wf-node-label">FRD &amp; User Stories</div><div class="wf-node-sub">Development-ready documentation with acceptance criteria</div></div>
+          </div>
+          <div class="wf-arrow">↓</div>
+          <div class="wf-node">
+            <div><div class="wf-node-label">Development</div><div class="wf-node-sub">JIRA tracking · Sprint planning · Dev collaboration</div></div>
+          </div>
+          <div class="wf-arrow">↓</div>
+          <div class="wf-node">
+            <div><div class="wf-node-label">SIT → UAT</div><div class="wf-node-sub">System testing · User acceptance testing · Defect validation</div></div>
+          </div>
+          <div class="wf-arrow">↓</div>
+          <div class="wf-node" style="border-color:rgba(199,255,61,0.3);background:rgba(199,255,61,0.05);">
+            <div><div class="wf-node-label" style="color:var(--accent);">Production — RAC Mexico</div><div class="wf-node-sub">Production deployment · Production validation</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 Tools -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">06 / TOOLS &amp; TECHNOLOGIES</div>
+      <h2 class="cs-section-title">Working toolkit.</h2>
+      <div class="cs-contrib">
+        <div class="cs-contrib-item">JIRA</div>
+        <div class="cs-contrib-item">Confluence</div>
+        <div class="cs-contrib-item">Figma (Wireframes)</div>
+        <div class="cs-contrib-item">Microsoft Word</div>
+        <div class="cs-contrib-item">Microsoft PowerPoint</div>
+        <div class="cs-contrib-item">Microsoft Excel</div>
+      </div>
+    </div>
+
+    <!-- 07 Validation -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">07 / VALIDATION</div>
+      <h2 class="cs-section-title">SIT, UAT and production validation.</h2>
+      <div class="cs-section-body">
+        <p>I conducted System Integration Testing (SIT) to validate that the implemented solution aligned with the defined requirements and acceptance criteria. UAT was conducted with international business stakeholders to confirm the adapted workflows matched expected behaviour in the Mexican context. Production validation was performed post-deployment.</p>
+      </div>
+    </div>
+
+    <!-- 08 Outcome -->
+    <div class="cs-section reveal">
+      <div class="cs-section-num">08 / OUTCOME</div>
+      <h2 class="cs-section-title">Delivered to production.</h2>
+      <div class="wf-outcome" style="max-width:640px;">
+        <div class="wf-outcome-label">Outcome</div>
+        <div class="wf-outcome-text">The solution reached production as RAC Mexico with the expected business behaviour and positive client acceptance.</div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:40px;border-top:1px solid var(--border-dark);">
+      <a href="../index.html#work" style="color:rgba(255,255,255,0.5);font-size:0.82rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">← All Projects</a>
+      <a href="engineering-dashboard.html" style="color:#fff;font-size:0.82rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Next: Engineering Dashboard →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">Prince Calvin<span>Business &amp; Quality Analyst · AI Tester</span></div>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/prince-calvin-p-0a6900255" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:princecalvin86984@gmail.com">Email</a>
+        <a href="../assets/prince-calvin-resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+      <div class="footer-copy">© 2026 Prince Calvin</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+</body>
+</html>
