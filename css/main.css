@@ -894,3 +894,89 @@ body::before {
 @media (max-width: 768px) {
   .hero { padding-top: calc(var(--nav-height) + 24px); min-height: unset; }
 }
+
+/* ============================================
+   PROJECT CARD — EXPANDED CONTENT BLOCKS
+   Business Objective / Contribution / Outcome
+   ============================================ */
+
+/* Label above each content block */
+.pc-block { display: flex; flex-direction: column; gap: 8px; }
+
+.pc-block-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.pc-block-text {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Contribution bullet list */
+.pc-contrib-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+}
+
+.pc-contrib-list li {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  padding-left: 14px;
+  position: relative;
+}
+
+.pc-contrib-list li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+/* Outcome strip — visually distinct at bottom of card */
+.pc-outcome {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(21,21,21,0.04);
+  border: 1px solid rgba(21,21,21,0.07);
+}
+
+.pc-outcome-label {
+  font-size: 0.60rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.pc-outcome-text {
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+
+/* Divider between the header block (num/cat) and title */
+.project-card-cat {
+  padding-bottom: 14px;
+}
+
+/* Ensure card link stays at the bottom */
+.project-card {
+  gap: 16px;
+}
+
+/* Responsive: single column cards already handled — no change needed */
